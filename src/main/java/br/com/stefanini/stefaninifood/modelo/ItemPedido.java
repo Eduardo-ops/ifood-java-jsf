@@ -1,9 +1,15 @@
 package br.com.stefanini.stefaninifood.modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class ItemPedido {
+
+	@Id
+	@GeneratedValue
+	private Integer id;
 
 	private String produto;
 	private int quantidade;
