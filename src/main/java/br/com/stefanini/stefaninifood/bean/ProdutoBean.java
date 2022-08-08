@@ -7,6 +7,7 @@ import javax.faces.bean.ViewScoped;
 
 import br.com.stefanini.stefaninifood.dao.DAO;
 import br.com.stefanini.stefaninifood.modelo.Produto;
+import br.com.stefanini.stefaninifood.util.ForwardView;
 
 @ManagedBean
 @ViewScoped
@@ -20,16 +21,29 @@ public class ProdutoBean {
 
 	public void gravarProduto() {
 		new DAO<Produto>(Produto.class).adiciona(this.produto);
-
 		this.produto = new Produto();
 	}
 
-	public void alterarProduto() {
+	public void gravarAlteracaoDeProduto() {
 
+		if (this.produto.getId() == null) {
+			System.out.println("Retorno de apenas uma mensagem.");
+		} else {
+			new DAO<Produto>(Produto.class).atualiza(produto);
+			this.produto = new Produto();
+		}
 	}
 
-	public void removerProduto() {
+	public void alterarProduto(Produto produto) {
+		this.produto = produto;
+	}
 
+	public void cancelarAlteracaoDeProduto() {
+		this.produto = new Produto();
+	}
+
+	public void removerProduto(Produto produto) {
+		new DAO<Produto>(Produto.class).remove(produto);
 	}
 
 	public Produto getProduto() {

@@ -40,11 +40,9 @@
 			</fieldset>
 		</h:form>
 
-		<h2>Cadastro de Produto</h2>
-
 		<h:form>
 			<fieldset>
-				<legend>Especificações do Produto</legend>
+				<legend>Informe um produto para alteração</legend>
 				<h:panelGrid columns="2">
 
 					<h:outputLabel value="Nome:" for="nome" />
@@ -58,7 +56,10 @@
 						value="#{produtoBean.produto.descricao}" />
 
 					<h:commandButton value="Salvar"
-						action="#{produtoBean.gravarProduto}" />
+						action="#{produtoBean.gravarAlteracaoDeProduto}" />
+
+					<h:commandButton value="Cancelar"
+						action="#{produtoBean.cancelarAlteracaoDeProduto}" />
 				</h:panelGrid>
 			</fieldset>
 		</h:form>
