@@ -5,7 +5,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.stefanini.stefaninifood.modelo.Pedido;
+import br.com.stefanini.stefaninifood.dao.DAO;
 import br.com.stefanini.stefaninifood.modelo.Produto;
 
 @ManagedBean
@@ -14,12 +14,14 @@ public class ProdutoBean {
 
 	private Produto produto = new Produto();
 
-	public List<Pedido> getProdutos() {
-		return null;
+	public List<Produto> getProdutos() {
+		return new DAO<Produto>(Produto.class).listaTodos();
 	}
 
 	public void gravarProduto() {
+		new DAO<Produto>(Produto.class).adiciona(this.produto);
 
+		this.produto = new Produto();
 	}
 
 	public void alterarProduto() {
