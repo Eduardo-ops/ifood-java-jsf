@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+		Lista de Pedidos
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<h:form>
+			<fieldset>
+				<legend>Pedidos Realizados</legend>
+				<h:dataTable value="#{pedidoBean.pedidos}" var="pedido">
+					<h:column>
+						<f:facet name="header">Endereço:</f:facet>
+						<h:outputText value="#{pedido.endereco}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Tipo de Pagamento</f:facet>
+						<h:outputText value="#{pedido.tipoDePagamento}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Preço Total</f:facet>
+						<h:outputText value="#{pedido.precoTotal}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Ações</f:facet>
+						<h:commandButton value="Alterar"
+							action="#{pedidoBean.alterarPedido(pedido)}" />
+						<h:commandButton value="Remover"
+							action="#{pedidoBean.removerPedido(pedido)}" />
+					</h:column>
+				</h:dataTable>
+			</fieldset>
+		</h:form>
+
+		<h:form>
+			<fieldset>
+				<legend>Informe um pedido para alteração</legend>
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Endereço:" for="endereco" />
+					<h:inputText id="endereco" value="#{pedidoBean.pedido.endereco}" />
+
+					<h:outputLabel value="Tipo de Pagamento" var="tipoDePagamento" />
+					<h:inputText id="tipoDePagamento"
+						value="#{pedidoBean.pedido.tipoDePagamento}" />
+					<h:commandButton value="Salvar"
+						action="#{pedidoBean.gravarAlteracaoDePedido}" />
+					<h:commandButton value="Cancelar"
+						action="#{pedidoBean.cancelarAlteracaoDePedido}" />
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+<ui:define name="texto">
+  		StefaniniFood
+	</ui:define>
+</html>

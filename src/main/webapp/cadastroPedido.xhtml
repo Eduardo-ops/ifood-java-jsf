@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+		Realize seu Pedido
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<h:form>
+			<fieldset>
+				<legend>Seu Pedido</legend>
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Endereço:" for="endereco" />
+					<h:inputText id="endereco" value="#{pedidoBean.pedido.endereco}" />
+
+					<h:outputLabel value="Tipo de Pagamento" var="tipoDePagamento" />
+					<h:inputText id="tipoDePagamento"
+						value="#{pedidoBean.pedido.tipoDePagamento}" />
+					<h:commandButton value="Salvar" action="#{pedidoBean.gravarPedido}" />
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+
+	</ui:define>
+
+	<ui:define name="texto">
+  		StefaniniFood
+	</ui:define>
+</ui:composition>
+
+</html>

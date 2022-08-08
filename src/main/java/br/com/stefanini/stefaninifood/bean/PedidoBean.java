@@ -17,15 +17,30 @@ public class PedidoBean {
 	private Integer itemPedidoId;
 
 	public List<Pedido> getPedidos() {
-		return null;
+		return new DAO<Pedido>(Pedido.class).listaTodos();
 	}
 
 	public void gravarPedido() {
-
+		new DAO<Pedido>(Pedido.class).adiciona(pedido);
+		this.pedido = new Pedido();
 	}
 
-	public void alterarPedido() {
+	public void gravarAlteracaoDePedido() {
 
+		if (this.pedido.getId() == null) {
+			throw new RuntimeException("O pedido não pode ser cadastrado sem nenhum dado informado.");
+		} else {
+			new DAO<Pedido>(Pedido.class).atualiza(pedido);
+			this.pedido = new Pedido();
+		}
+	}
+
+	public void alterarPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
+	public void cancelarAlteracaoDePedido() {
+		this.pedido = new Pedido();
 	}
 
 	public void removerPedido(Pedido pedido) {

@@ -27,7 +27,7 @@ public class ProdutoBean {
 	public void gravarAlteracaoDeProduto() {
 
 		if (this.produto.getId() == null) {
-			System.out.println("Retorno de apenas uma mensagem.");
+			throw new RuntimeException("O produto não pode ser cadastrado sem nenhum dado informado.");
 		} else {
 			new DAO<Produto>(Produto.class).atualiza(produto);
 			this.produto = new Produto();
