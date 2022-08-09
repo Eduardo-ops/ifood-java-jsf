@@ -39,6 +39,30 @@
 					</h:column>
 				</h:dataTable>
 			</fieldset>
+
+			<fieldset>
+				<legend>Opções Kardápio</legend>
+
+				<h:outputLabel value="Selecione seu Consumo:" for="produto" />
+				<h:selectOneMenu value="#{pedidoBean.produtoId}" id="produto">
+					<f:selectItems value="#{pedidoBean.produtos}" var="produto"
+						itemLabel="#{produto.nome}" itemValue="#{produto.id}" />
+				</h:selectOneMenu>
+
+				<h:commandButton value="Gravar Item"
+					action="#{pedidoBean.gravarItem}" />
+
+				<h:dataTable value="#{pedidoBean.itensDoPedido}" var="produto">
+					<h:column>
+						<h:outputText value="#{produto.nome}" />
+					</h:column>
+
+					<h:column>
+						<h:commandButton value="X"
+							action="#{pedidoBean.removeItemDoPedido(produto)}" />
+					</h:column>
+				</h:dataTable>
+			</fieldset>
 		</h:form>
 
 		<h:form>
