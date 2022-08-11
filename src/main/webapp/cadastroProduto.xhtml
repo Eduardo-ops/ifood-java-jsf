@@ -13,15 +13,18 @@
 	<ui:define name="conteudo">
 
 		<h:form>
+			<h:messages id="messages" />
 			<fieldset>
 				<legend>Especificações do Produto</legend>
 				<h:panelGrid columns="2">
 
 					<h:outputLabel value="Nome:" for="nome" />
-					<h:inputText id="nome" value="#{produtoBean.produto.nome}" />
+					<h:inputText id="nome" value="#{produtoBean.produto.nome}"
+						required="true" requiredMessage="Nome obrigatório" />
 
 					<h:outputLabel value="Valor:" for="valor" />
-					<h:inputText var="valor" value="#{produtoBean.produto.valor}" />
+					<h:inputText var="valor" value="#{produtoBean.produto.valor}"
+						required="true" requiredMessage="Preço obrigatório" />
 
 					<h:outputLabel value="Descrição:" for="descricao" />
 					<h:inputText id="descricao"

@@ -22,9 +22,13 @@ public class PedidoBean {
 	}
 
 	public String gravarPedido() {
-		new DAO<Pedido>(Pedido.class).adiciona(pedido);
-		this.pedido = new Pedido();
-		return "pedidos?faces-redirect=true";
+		if (this.pedido.getProdutos().isEmpty()) {
+			throw new RuntimeException("O pedido deve ter pelo menos um produto");
+		} else {
+			new DAO<Pedido>(Pedido.class).adiciona(pedido);
+			this.pedido = new Pedido();
+			return "pedidos?faces-redirect=true";
+		}
 	}
 
 	public void gravarAlteracaoDePedido() {

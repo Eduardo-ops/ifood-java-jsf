@@ -13,16 +13,26 @@
 	<ui:define name="conteudo">
 
 		<h:form>
+			<h:messages id="messages" />
 			<fieldset>
 				<legend>Seu Pedido</legend>
 				<h:panelGrid columns="2">
 
 					<h:outputLabel value="Endereço:" for="endereco" />
-					<h:inputText id="endereco" value="#{pedidoBean.pedido.endereco}" />
+					<h:inputText id="endereco" value="#{pedidoBean.pedido.endereco}"
+						required="true"
+						requiredMessage="O campo Endereço é de preenchimento obrigatório" />
 
 					<h:outputLabel value="Tipo de Pagamento" var="tipoDePagamento" />
 					<h:inputText id="tipoDePagamento"
-						value="#{pedidoBean.pedido.tipoDePagamento}" />
+						value="#{pedidoBean.pedido.tipoDePagamento}" required="true"
+						requiredMessage="O campo Tipo de Pagamento é de preenchimento obrigatório" />
+
+					<h:outputLabel value="Data do Pedido" for="dataDoPedido" />
+					<h:inputText id="dataDoPedido"
+						value="#{pedidoBean.pedido.dataDoPedido.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:inputText>
 
 				</h:panelGrid>
 			</fieldset>

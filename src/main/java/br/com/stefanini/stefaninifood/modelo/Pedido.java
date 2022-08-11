@@ -1,6 +1,7 @@
 package br.com.stefanini.stefaninifood.modelo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Pedido {
@@ -19,6 +22,8 @@ public class Pedido {
 	private String tipoDePagamento;
 	private String endereco;
 	private float precoTotal;
+	@Temporal(TemporalType.DATE)
+	private Calendar dataDoPedido = Calendar.getInstance();
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Produto> produtos = new ArrayList<Produto>();
@@ -79,6 +84,14 @@ public class Pedido {
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
+	}
+
+	public Calendar getDataDoPedido() {
+		return dataDoPedido;
+	}
+
+	public void setDataDoPedido(Calendar dataDoPedido) {
+		this.dataDoPedido = dataDoPedido;
 	}
 
 }
