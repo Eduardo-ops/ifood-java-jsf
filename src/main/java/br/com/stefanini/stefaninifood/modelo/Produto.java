@@ -18,6 +18,8 @@ public class Produto {
 	public Produto() {
 
 	}
+	
+	// incluir relação
 
 	public Integer getId() {
 		return id;

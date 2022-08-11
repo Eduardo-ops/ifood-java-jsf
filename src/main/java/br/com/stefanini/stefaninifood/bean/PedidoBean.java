@@ -1,5 +1,6 @@
 package br.com.stefanini.stefaninifood.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -14,7 +15,7 @@ import br.com.stefanini.stefaninifood.modelo.Produto;
 public class PedidoBean {
 
 	private Pedido pedido = new Pedido();
-	private Integer itemPedidoId;
+	private Integer produtoId;
 
 	public List<Pedido> getPedidos() {
 		return new DAO<Pedido>(Pedido.class).listaTodos();
@@ -35,6 +36,10 @@ public class PedidoBean {
 		}
 	}
 
+	public void removeItemDoPedido(Produto produto) {
+		this.pedido.removeProduto(produto);
+	}
+
 	public void alterarPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
@@ -47,6 +52,19 @@ public class PedidoBean {
 		new DAO<Pedido>(Pedido.class).remove(pedido);
 	}
 
+	public List<Produto> getProdutos() {
+		return new DAO<Produto>(Produto.class).listaTodos();
+	}
+
+	public void gravarItem() {
+		Produto produto = new DAO<Produto>(Produto.class).bucaPorId(produtoId);
+		this.pedido.adicionarProduto(produto);
+	}
+
+	public List<Produto> getItensDoPedido() {
+		return this.pedido.getProdutos();
+	}
+
 	public Pedido getPedido() {
 		return pedido;
 	}
@@ -55,12 +73,12 @@ public class PedidoBean {
 		this.pedido = pedido;
 	}
 
-	public Integer getItemPedidoId() {
-		return itemPedidoId;
+	public Integer getProdutoId() {
+		return produtoId;
 	}
 
-	public void setItemPedidoId(Integer itemPedidoId) {
-		this.itemPedidoId = itemPedidoId;
+	public void setProdutoId(Integer produtoId) {
+		this.produtoId = produtoId;
 	}
 
 }

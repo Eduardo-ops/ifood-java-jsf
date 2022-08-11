@@ -8,7 +8,8 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         
         <class>br.com.stefanini.stefaninifood.modelo.Produto</class>
-
+		<class>br.com.stefanini.stefaninifood.modelo.Pedido</class>
+		
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/stefaninifooddb" />
