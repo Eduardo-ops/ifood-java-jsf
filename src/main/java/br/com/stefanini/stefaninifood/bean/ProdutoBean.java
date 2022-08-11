@@ -7,7 +7,6 @@ import javax.faces.bean.ViewScoped;
 
 import br.com.stefanini.stefaninifood.dao.DAO;
 import br.com.stefanini.stefaninifood.modelo.Produto;
-import br.com.stefanini.stefaninifood.util.ForwardView;
 
 @ManagedBean
 @ViewScoped
@@ -19,9 +18,10 @@ public class ProdutoBean {
 		return new DAO<Produto>(Produto.class).listaTodos();
 	}
 
-	public void gravarProduto() {
+	public String gravarProduto() {
 		new DAO<Produto>(Produto.class).adiciona(this.produto);
 		this.produto = new Produto();
+		return "produtos?faces-redirect=true";
 	}
 
 	public void gravarAlteracaoDeProduto() {
@@ -44,6 +44,19 @@ public class ProdutoBean {
 
 	public void removerProduto(Produto produto) {
 		new DAO<Produto>(Produto.class).remove(produto);
+	}
+
+	public String visualizarProdutos() {
+		return "produtos?faces-redirect=true";
+	}
+
+	public String voltarAoHome() {
+		return "home?faces-redirect=true";
+	}
+
+	public String formProduto() {
+		System.out.println("Rota chamada.");
+		return "cadastroProduto?faces-redirect=true";
 	}
 
 	public Produto getProduto() {

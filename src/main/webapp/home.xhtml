@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="_template.xhtml">
+
+	<ui:define name="titulo">
+		Bem vindo ao StefaniniFood
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<h2>Home</h2>
+
+		<h:form>
+			<h:commandButton value="Visualizar Produtos"
+				action="#{produtoBean.visualizarProdutos}" imediate="true" />
+			<h:commandButton value="Visualizar Pedidos"
+				action="#{pedidoBean.visualizarPedidos}" imediate="true" />
+		</h:form>
+
+	</ui:define>
+
+	<ui:define name="rodape">
+		<ui:define name="texto">
+			StefaniniFood
+		</ui:define>
+	</ui:define>
+
+</ui:composition>
+</html>

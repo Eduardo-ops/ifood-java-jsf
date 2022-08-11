@@ -12,6 +12,13 @@
 	<ui:define name="conteudo">
 
 		<h:form>
+			<h:commandButton value="Home" action="#{produtoBean.voltarAoHome}"
+				imediate="true" />
+			<h:commandButton value="Cadastrar Pedido"
+				action="#{pedidoBean.formPedido}" imediate="true" />
+		</h:form>
+
+		<h:form>
 			<fieldset>
 				<legend>Pedidos Realizados</legend>
 				<h:dataTable value="#{pedidoBean.pedidos}" var="pedido">

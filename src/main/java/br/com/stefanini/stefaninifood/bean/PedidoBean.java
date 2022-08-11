@@ -21,9 +21,10 @@ public class PedidoBean {
 		return new DAO<Pedido>(Pedido.class).listaTodos();
 	}
 
-	public void gravarPedido() {
+	public String gravarPedido() {
 		new DAO<Pedido>(Pedido.class).adiciona(pedido);
 		this.pedido = new Pedido();
+		return "pedidos?faces-redirect=true";
 	}
 
 	public void gravarAlteracaoDePedido() {
@@ -63,6 +64,14 @@ public class PedidoBean {
 
 	public List<Produto> getItensDoPedido() {
 		return this.pedido.getProdutos();
+	}
+
+	public String visualizarPedidos() {
+		return "pedidos?faces-redirect=true";
+	}
+
+	public String formPedido() {
+		return "cadastroPedido?faces-redirect=true";
 	}
 
 	public Pedido getPedido() {
