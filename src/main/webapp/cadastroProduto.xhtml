@@ -20,15 +20,22 @@
 
 					<h:outputLabel value="Nome:" for="nome" />
 					<h:inputText id="nome" value="#{produtoBean.produto.nome}"
-						required="true" requiredMessage="Nome obrigatório" />
+						required="true" requiredMessage="Nome obrigatório"
+						validatorMessage="O campo nome não pode ser superior a 40 caracteres.">
+						<f:validateLength maximum="40" />
+					</h:inputText>
 
 					<h:outputLabel value="Valor:" for="valor" />
 					<h:inputText var="valor" value="#{produtoBean.produto.valor}"
-						required="true" requiredMessage="Preço obrigatório" />
+						required="true" requiredMessage="Preço obrigatório"
+						validator="#{produtoBean.valorPositivo}" />
 
 					<h:outputLabel value="Descrição:" for="descricao" />
 					<h:inputText id="descricao"
-						value="#{produtoBean.produto.descricao}" />
+						value="#{produtoBean.produto.descricao}"
+						validatorMessage="O campo Descrição não pode ser superior a 20 caracteres.">
+						<f:validateLength maximum="20" />
+					</h:inputText>
 
 					<h:commandButton value="Salvar"
 						action="#{produtoBean.gravarProduto}" />

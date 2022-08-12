@@ -1,10 +1,11 @@
 package br.com.stefanini.stefaninifood.bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.stefanini.stefaninifood.dao.DAO;
 import br.com.stefanini.stefaninifood.modelo.Pedido;
@@ -23,12 +24,15 @@ public class PedidoBean {
 
 	public String gravarPedido() {
 		if (this.pedido.getProdutos().isEmpty()) {
-			throw new RuntimeException("O pedido deve ter pelo menos um produto");
+			FacesContext.getCurrentInstance().addMessage("produto",
+					new FacesMessage("Cada pedido deve conter pelo menos um produto."));
 		} else {
 			new DAO<Pedido>(Pedido.class).adiciona(pedido);
 			this.pedido = new Pedido();
 			return "pedidos?faces-redirect=true";
 		}
+
+		return "";
 	}
 
 	public void gravarAlteracaoDePedido() {

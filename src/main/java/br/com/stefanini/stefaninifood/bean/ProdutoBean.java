@@ -2,8 +2,12 @@ package br.com.stefanini.stefaninifood.bean;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import br.com.stefanini.stefaninifood.dao.DAO;
 import br.com.stefanini.stefaninifood.modelo.Produto;
@@ -57,6 +61,18 @@ public class ProdutoBean {
 	public String formProduto() {
 		System.out.println("Rota chamada.");
 		return "cadastroProduto?faces-redirect=true";
+	}
+
+	// Poderia ser utilizado o validador do próprio jsf(<f:validateDoubleRange
+	// minimun="1.0" maximun="1000.00" />), mas foi criado um validador
+	// personalizado adim de práticas.
+	public void valorPositivo(FacesContext facesContext, UIComponent uiComponent, Object object)
+			throws ValidatorException {
+		String valor = object.toString();
+
+		if (Float.parseFloat(valor) <= 0.00) {
+			throw new ValidatorException(new FacesMessage("O produto deve ter o seu valor acima de R$ 0.00"));
+		}
 	}
 
 	public Produto getProduto() {

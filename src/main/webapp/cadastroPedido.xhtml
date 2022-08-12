@@ -21,7 +21,10 @@
 					<h:outputLabel value="Endereço:" for="endereco" />
 					<h:inputText id="endereco" value="#{pedidoBean.pedido.endereco}"
 						required="true"
-						requiredMessage="O campo Endereço é de preenchimento obrigatório" />
+						requiredMessage="O campo Endereço é de preenchimento obrigatório"
+						validatorMessage="O campo endereço não pode ser superior a 80 caracteres.">
+						<f:validateLength maximum="80" />
+					</h:inputText>
 
 					<h:outputLabel value="Tipo de Pagamento" var="tipoDePagamento" />
 					<h:inputText id="tipoDePagamento"

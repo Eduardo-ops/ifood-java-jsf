@@ -34,7 +34,10 @@
 
 					<h:column>
 						<f:facet name="header">Preço Total</f:facet>
-						<h:outputText value="#{pedido.precoTotal}" />
+						<h:outputText value="#{pedido.precoTotal}">
+							<f:convertNumber type="currency" pattern="R$ #0.00"
+								currencySymbol="R$" locale="pt_BR" />
+						</h:outputText>
 					</h:column>
 
 					<h:column>
