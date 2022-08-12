@@ -11,9 +11,8 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-
-		<h:form>
-			<h:messages id="messages" />
+		<h:form id="formPedido">
+			<h:messages id="messagesComAjax" />
 			<fieldset>
 				<legend>Seu Pedido</legend>
 				<h:panelGrid columns="2">
@@ -24,6 +23,7 @@
 						requiredMessage="O campo Endereço é de preenchimento obrigatório"
 						validatorMessage="O campo endereço não pode ser superior a 80 caracteres.">
 						<f:validateLength maximum="80" />
+						<f:ajax event="blur" render="messagesComAjax" />
 					</h:inputText>
 
 					<h:outputLabel value="Tipo de Pagamento" var="tipoDePagamento" />
@@ -50,11 +50,21 @@
 				</h:selectOneMenu>
 
 				<h:commandButton value="Gravar Item"
-					action="#{pedidoBean.gravarItem}" />
+					action="#{pedidoBean.gravarItem}">
+					<f:ajax execute="produto" render="tabelaProdutos" />
+				</h:commandButton>
 
-				<h:dataTable value="#{pedidoBean.itensDoPedido}" var="produto">
+				<h:dataTable id="tabelaProdutos" value="#{pedidoBean.itensDoPedido}"
+					var="produto">
 					<h:column>
 						<h:outputText value="#{produto.nome}" />
+					</h:column>
+
+					<h:column>
+						<h:outputText value="#{produto.valor}">
+							<f:convertNumber type="currency" pattern="R$ #0.00"
+								currencySymbol="R$" locale="pt_BR" />
+						</h:outputText>
 					</h:column>
 
 					<h:column>
@@ -63,9 +73,10 @@
 					</h:column>
 				</h:dataTable>
 			</fieldset>
-			<h:commandButton value="Salvar" action="#{pedidoBean.gravarPedido}" />
+			<h:commandButton value="Salvar" action="#{pedidoBean.gravarPedido}">
+				<f:ajax execute="@form" render="@form :formPedidos:tabelaPedidos" />
+			</h:commandButton>
 		</h:form>
-
 	</ui:define>
 
 	<ui:define name="texto">

@@ -11,9 +11,8 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-
 		<h:form>
-			<h:messages id="messages" />
+			<h:messages id="messagesComAjax" />
 			<fieldset>
 				<legend>Especificações do Produto</legend>
 				<h:panelGrid columns="2">
@@ -23,12 +22,15 @@
 						required="true" requiredMessage="Nome obrigatório"
 						validatorMessage="O campo nome não pode ser superior a 40 caracteres.">
 						<f:validateLength maximum="40" />
+						<f:ajax event="blur" render="messagesComAjax" />
 					</h:inputText>
 
 					<h:outputLabel value="Valor:" for="valor" />
 					<h:inputText var="valor" value="#{produtoBean.produto.valor}"
 						required="true" requiredMessage="Preço obrigatório"
-						validator="#{produtoBean.valorPositivo}" />
+						validator="#{produtoBean.valorPositivo}">
+						<ajax event="keyup" render="messagesComAjax" />
+					</h:inputText>
 
 					<h:outputLabel value="Descrição:" for="descricao" />
 					<h:inputText id="descricao"
@@ -38,11 +40,13 @@
 					</h:inputText>
 
 					<h:commandButton value="Salvar"
-						action="#{produtoBean.gravarProduto}" />
+						action="#{produtoBean.gravarProduto}">
+						<f:ajax execute="@form"
+							render="@form :formProdutos:tabelaProdutos" />
+					</h:commandButton>
 				</h:panelGrid>
 			</fieldset>
 		</h:form>
-
 	</ui:define>
 
 	<ui:define name="texto">

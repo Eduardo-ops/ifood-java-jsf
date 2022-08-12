@@ -18,10 +18,10 @@
 				action="#{pedidoBean.formPedido}" imediate="true" />
 		</h:form>
 
-		<h:form>
+		<h:form id="formPedidos">
 			<fieldset>
 				<legend>Pedidos Realizados</legend>
-				<h:dataTable value="#{pedidoBean.pedidos}" var="pedido">
+				<h:dataTable id="tabelaPedidos" value="#{pedidoBean.pedidos}" var="pedido">
 					<h:column>
 						<f:facet name="header">Endereço:</f:facet>
 						<h:outputText value="#{pedido.endereco}" />
